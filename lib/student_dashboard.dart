@@ -3,6 +3,30 @@ import 'package:flutter/material.dart';
 class StudentDashboard extends StatelessWidget {
   const StudentDashboard({super.key});
 
+  // Helper method to show a modal dialog on screen
+  void _showActionModal(BuildContext context, String title, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          title: Text(title),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,8 +35,11 @@ class StudentDashboard extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
             onPressed: () {
+              print('Logout clicked');
               debugPrint('Logout clicked');
+              _showActionModal(context, 'Logout', 'Logout clicked');
             },
           ),
         ],
@@ -22,48 +49,47 @@ class StudentDashboard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Row(
               children: [
                 const CircleAvatar(
                   radius: 36,
-                  backgroundImage: NetworkImage(
+                  backgroundImage: AssetImage(
                     'assets/idpic.jpg',
                   ),
                 ),
                 const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Daniel Cott L. Gerarman',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        'Daniel Cott L. Gerarman',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 2),
-                    Text(
-                      'ID: 546-010',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.black54,
+                      SizedBox(height: 2),
+                      Text(
+                        'ID: 546-010',
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.black54,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'BSCS 4TH YEAR',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.black54,
+                      Text(
+                        'BSCS 4TH YEAR',
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.black54,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
-
             const SizedBox(height: 20),
-
             Card(
               elevation: 2,
               shape: RoundedRectangleBorder(
@@ -86,9 +112,7 @@ class StudentDashboard extends StatelessWidget {
                 ],
               ),
             ),
-
             const SizedBox(height: 20),
-
             const Text(
               'Subjects',
               style: TextStyle(
@@ -117,7 +141,9 @@ class StudentDashboard extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          print('Add Subject Clicked!');
           debugPrint('Add Subject Clicked!');
+          _showActionModal(context, 'Add Subject', 'Add Subject Clicked!');
         },
         child: const Icon(Icons.add),
       ),
