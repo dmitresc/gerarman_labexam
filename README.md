@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # stateless_labexam_gerarman
 
 A new Flutter project.
@@ -15,3 +16,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# gerarman_labexam
+>>>>>>> 6ac2996edb663ceba650148ad4f894e03fb3bea5
